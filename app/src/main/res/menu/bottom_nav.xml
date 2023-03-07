@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Dashboard"
+        android:enabled="true"
+        android:icon="@drawable/home"
+        android:title="@string/dashboard"/>
+    <item
+        android:id="@+id/Todo"
+        android:enabled="true"
+        android:icon="@drawable/todo"
+        android:title="@string/to_do"/>
+
+    <item
+        android:id="@+id/Active"
+        android:enabled="true"
+        android:icon="@drawable/active"
+        android:title="@string/active"/>
+
+    <item
+        android:id="@+id/Completed"
+        android:enabled="true"
+        android:icon="@drawable/complete"
+        android:title="@string/completed"/>
+</menu>
