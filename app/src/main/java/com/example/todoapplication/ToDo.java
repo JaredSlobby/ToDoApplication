@@ -4,11 +4,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -35,6 +38,11 @@ public class ToDo extends Fragment
     ListView printTasks;
 
     ArrayList<String> taskTitle;
+    ArrayList<String> completionDate;
+    ArrayList<String> description;
+    ArrayList<String> endDate;
+    ArrayList<String> priority;
+    ArrayList<String> statusTask;
 
     public ToDo() {
         // Required empty public constructor
@@ -68,6 +76,11 @@ public class ToDo extends Fragment
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
         taskTitle = new ArrayList<>();
+        completionDate = new ArrayList<>();
+        description = new ArrayList<>();
+        endDate = new ArrayList<>();
+        priority = new ArrayList<>();
+        statusTask = new ArrayList<>();
 
 
         printTasks = view.findViewById(R.id.tasksList);
@@ -89,6 +102,11 @@ public class ToDo extends Fragment
                         if(document.getString("UID").matches(uid) && document.getString("Status").equals(status))
                         {
                             taskTitle.add(document.getString("Title"));
+                            completionDate.add(document.getString("Completion Date"));
+                            description.add(document.getString("Description"));
+                            endDate.add(document.getString("End Date"));
+                            priority.add(document.getString("Priority"));
+                            statusTask.add(document.getString("Status"));
                             Log.d(TAG, "onComplete: " + document.getString("Title"));
                         }
                     }
@@ -101,10 +119,29 @@ public class ToDo extends Fragment
             }
         });
 
-        printTasks.setOnItemClickListener((parent, view, position, id) ->
+        printTasks.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
-            String task = taskTitle.get(position);
-            Toast.makeText(view.getContext(), task, Toast.LENGTH_SHORT).show();
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                Bundle InfoBundle = new Bundle();
+                InfoBundle.putString("Title", taskTitle.get(position));
+                InfoBundle.putString("CompletionDate", completionDate.get(position));
+                InfoBundle.putString("Description", description.get(position));
+                InfoBundle.putString("EndDate", endDate.get(position));
+                InfoBundle.putString("Priority", priority.get(position));
+                InfoBundle.putString("Status", statusTask.get(position));
+
+                Log.d(TAG, "onItemClick TITLE: " + taskTitle.get(position));
+
+                Fragment fragment = new TaskInfo();
+                fragment.setArguments(InfoBundle);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
         });
 
 

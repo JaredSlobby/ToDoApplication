@@ -26,9 +26,7 @@ public class Dashboard extends AppCompatActivity
         fragmentTransaction.replace(R.id.frameLayout, new Home());
         fragmentTransaction.commit();
 
-
         navigationBarView = findViewById(R.id.bottom_navigation);
-
 
         navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener()
         {
@@ -78,9 +76,7 @@ public class Dashboard extends AppCompatActivity
         Bundle bundle = new Bundle();
         bundle.putString("status", status);
         ToDo.setArguments(bundle);
-
     }
-
 
 
 
