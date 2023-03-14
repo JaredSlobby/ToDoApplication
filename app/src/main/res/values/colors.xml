@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
     <color name="jaam">#397be6</color>
+    <color name="bottomSheetBlack">#181818</color>
+    <color name="orange">#FFA500</color>
+    <color name="green">#00FF00</color>
 </resources>

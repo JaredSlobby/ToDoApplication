@@ -1,5 +1,6 @@
 package com.example.todoapplication;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,18 +35,13 @@ public class ToDo extends Fragment
     String uid;
     View view;
     String TAG = "ToDo";
-
     ArrayAdapter<String> adapter;
+    ArrayAdapter<String> adapterDescription;
     ListView printTasks;
 
-    ArrayList<String> taskTitle;
-    ArrayList<String> completionDate;
-    ArrayList<String> description;
-    ArrayList<String> endDate;
-    ArrayList<String> priority;
-    ArrayList<String> statusTask;
 
-    public ToDo() {
+    public ToDo()
+    {
         // Required empty public constructor
     }
 
@@ -58,6 +55,7 @@ public class ToDo extends Fragment
         view = inflater.inflate(R.layout.fragment_to_do, container, false);
 
         displayToDo();
+
         return view;
     }
 
@@ -75,20 +73,26 @@ public class ToDo extends Fragment
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
-        taskTitle = new ArrayList<>();
-        completionDate = new ArrayList<>();
-        description = new ArrayList<>();
-        endDate = new ArrayList<>();
-        priority = new ArrayList<>();
-        statusTask = new ArrayList<>();
+        ArrayList<String> taskTitle = new ArrayList<>();
+        ArrayList<String> completionDate = new ArrayList<>();
+        ArrayList<String> description = new ArrayList<>();
+        ArrayList<String> day = new ArrayList<>();
+        ArrayList<String> month = new ArrayList<>();
+        ArrayList<String> year = new ArrayList<>();
+        ArrayList<String> dayOfWeek = new ArrayList<>();
+        ArrayList<String> priority = new ArrayList<>();
+        ArrayList<String> statusTask = new ArrayList<>();
 
 
         printTasks = view.findViewById(R.id.tasksList);
         printTasks.setDividerHeight(0);
 
 
-        adapter = new ArrayAdapter(view.getContext(), R.layout.lists, R.id.taskTitle, taskTitle);
-        printTasks.setAdapter(adapter);
+        ArrayList<ArrayLists> listItems = new ArrayList<>();
+
+        CustomAdapter customAdapter = new CustomAdapter(view.getContext(), R.layout.lists, listItems);
+        printTasks.setAdapter(customAdapter);
+
 
         db.collection("Tasks").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
         {
@@ -104,13 +108,21 @@ public class ToDo extends Fragment
                             taskTitle.add(document.getString("Title"));
                             completionDate.add(document.getString("Completion Date"));
                             description.add(document.getString("Description"));
-                            endDate.add(document.getString("End Date"));
+                            day.add(document.getString("day"));
+                            month.add(document.getString("month"));
+                            dayOfWeek.add(document.getString("dayOfWeek"));
+                            year.add(document.getString("year"));
                             priority.add(document.getString("Priority"));
                             statusTask.add(document.getString("Status"));
                             Log.d(TAG, "onComplete: " + document.getString("Title"));
                         }
                     }
-                    adapter.notifyDataSetChanged();
+                    for(int i = 0; i < taskTitle.size(); i++)
+                    {
+                        ArrayLists arrayList = new ArrayLists(taskTitle.get(i), description.get(i), day.get(i), priority.get(i), dayOfWeek.get(i),month.get(i));
+                        listItems.add(arrayList);
+                    }
+                    customAdapter.notifyDataSetChanged();
                 }
                 else
                 {
@@ -118,6 +130,9 @@ public class ToDo extends Fragment
                 }
             }
         });
+
+
+
 
         printTasks.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -128,7 +143,9 @@ public class ToDo extends Fragment
                 InfoBundle.putString("Title", taskTitle.get(position));
                 InfoBundle.putString("CompletionDate", completionDate.get(position));
                 InfoBundle.putString("Description", description.get(position));
-                InfoBundle.putString("EndDate", endDate.get(position));
+                InfoBundle.putString("day", day.get(position));
+                InfoBundle.putString("month", month.get(position));
+                InfoBundle.putString("year", year.get(position));
                 InfoBundle.putString("Priority", priority.get(position));
                 InfoBundle.putString("Status", statusTask.get(position));
 

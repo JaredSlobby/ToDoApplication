@@ -25,4 +25,18 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="to_do">To-do</string>
+
+    <string-array name="Status">
+        <item>In-Progress</item>
+        <item>Completed</item>
+        <item>To Do</item>
+
+    </string-array>
+
+    <string-array name="Priority">
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+
+    </string-array>
 </resources>

@@ -39,13 +39,13 @@ public class TaskInfo extends Fragment
         String taskTitle = bundle.getString("Title");
         String completionDate = bundle.getString("CompletionDate");
         String description = bundle.getString("Description");
-        String endDate = bundle.getString("EndDate");
+        String month = bundle.getString("month");
         String priority = bundle.getString("Priority");
         String status = bundle.getString("Status");
+        String day = bundle.getString("day");
+        String year = bundle.getString("year");
 
-        taskInfo = view.findViewById(R.id.taskInfo);
-
-        taskInfo.setText("Task Title: " + taskTitle + " " + "Completion Date: " + completionDate + " " + "Description: " + description + " " + "End Date: " + endDate + " " + "Priority: " + priority + " " + "Status: " + status);
+        //taskInfo.setText("Task Title: " + taskTitle + " " + "Completion Date: " + completionDate + " " + "Description: " + description + " " + "End Date: " + endDate + " " + "Priority: " + priority + " " + "Status: " + status);
     }
 
 

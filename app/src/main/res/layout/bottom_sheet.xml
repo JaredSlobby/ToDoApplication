@@ -40,7 +40,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:padding="2dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:id="@+id/Layout">
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:id="@+id/textInputLayoutName1"
@@ -48,17 +49,17 @@
                     android:layout_height="wrap_content"
                     android:hint="Title"
                     app:helperText="Required*"
-                    app:boxStrokeColor="@color/white"
-                    android:textColorHint="@color/white"
+                    app:boxStrokeColor="@color/jaam"
+                    android:textColorHint="@color/jaam"
                     app:boxStrokeErrorColor="@color/red"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="32dp"
                     android:maxLines="1"
                     app:startIconDrawable="@drawable/email24"
-                    app:startIconTint="@color/white"
-                    app:endIconTint="@color/white"
-                    app:hintTextColor="@color/white"
+                    app:startIconTint="@color/jaam"
+                    app:endIconTint="@color/jaam"
+                    app:hintTextColor="@color/jaam"
                     app:helperTextTextColor="@color/red"
                     app:endIconMode="clear_text"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -82,31 +83,122 @@
                     android:layout_height="wrap_content"
                     android:hint="Description"
                     app:helperText="Required*"
-                    app:boxStrokeColor="@color/white"
-                    android:textColorHint="@color/white"
+                    app:boxStrokeColor="@color/jaam"
+                    android:textColorHint="@color/jaam"
                     app:boxStrokeErrorColor="@color/red"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="32dp"
                     android:maxLines="1"
                     app:startIconDrawable="@drawable/email24"
-                    app:startIconTint="@color/white"
-                    app:endIconTint="@color/white"
-                    app:hintTextColor="@color/white"
+                    app:startIconTint="@color/jaam"
+                    app:endIconTint="@color/jaam"
+                    app:hintTextColor="@color/jaam"
                     app:helperTextTextColor="@color/red"
                     app:endIconMode="clear_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.478"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintVertical_bias="1.0"
-                    app:layout_constraintTop_toBottomOf="@+id/logo">
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName1">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/Description"
                         android:layout_width="match_parent"
                         android:textColor="@color/white"
                         android:maxLines="1"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:inputType="textMultiLine"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:id="@+id/textInputLayoutDropDown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Status"
+                    app:boxStrokeColor="@color/jaam"
+                    android:textColorHint="@color/jaam"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="32dp"
+                    app:boxBackgroundColor="@color/bottomSheetBlack"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.478"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName">
+
+                    <AutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Status"
+                        android:enabled="true"
+                        android:inputType="none"
+                        android:textColor="@color/jaam"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:id="@+id/textInputLayoutDropDownPriority"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Priority"
+                    app:boxStrokeColor="@color/jaam"
+                    android:textColorHint="@color/jaam"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="32dp"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.478"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName">
+
+                    <AutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Priority"
+                        android:enabled="true"
+                        android:inputType="none"
+                        android:textColor="@color/jaam"/>
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:id="@+id/textInputLayoutDropDownDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="32dp"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.478"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/datePicker"
+                    android:text="20 Jan 2020"
+                    android:textSize="18sp"
+                    style="?android:spinnerStyle"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/jaam"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -144,7 +236,7 @@
         android:gravity="center_vertical">
 
         <Button
-            android:id="@+id/btnTrip"
+            android:id="@+id/btnAddTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner"
