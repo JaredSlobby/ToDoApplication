@@ -8,8 +8,9 @@ public class ArrayLists
     private String priority;
     private String dayOfWeek;
     private String month;
+    private String dueDate;
 
-public ArrayLists(String Title, String Description, String day, String priority, String dayOfWeek, String month)
+public ArrayLists(String Title, String Description, String day, String priority, String dayOfWeek, String month, String dueDate)
     {
         this.Title = Title;
         this.Description = Description;
@@ -17,6 +18,7 @@ public ArrayLists(String Title, String Description, String day, String priority,
         this.priority = priority;
         this.dayOfWeek = dayOfWeek;
         this.month = month;
+        this.dueDate = dueDate;
     }
 
     public String getTitle()
@@ -47,6 +49,16 @@ public ArrayLists(String Title, String Description, String day, String priority,
     public String getMonth()
     {
         return month;
+    }
+
+    public String getDueDate()
+    {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate)
+    {
+        this.dueDate = dueDate;
     }
 
     public void setMonth(String month)
